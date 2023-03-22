@@ -33,7 +33,7 @@ class login(Form):
 class orden_mantenimiento(Form):
     orden=StringField("", [validators.InputRequired(message="Rellene este campo por favor")])
     
-class form_datos_orden(Form):
+class pagina_3(Form):
      
      puestos_d_trabajo = SelectField('Puestos de trabajo', choices=[('1', 'Electricista'), ('2', 'Mecánico'), ('3', 'Supervisor'), ('4', 'Servicios Generales')])
      ficha = IntegerField("", [validators.input_required(message="Ingrese los datos en el campo soicitado")])

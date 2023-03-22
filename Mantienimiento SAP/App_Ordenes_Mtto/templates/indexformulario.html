@@ -5,14 +5,21 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/stilos.css') }}">
 {% block body %}
   <header>
-    <section class="d-flex justify-content-center col-sm-12 col-xl-12 ">
-      <img src="{{ url_for('static', filename = 'img/CRP.png') }}" alt="" id="img" >
-    </section>
-    <section class="d-flex justify-content-center ">
-    <div class="container  mt-4  card col-sn-6 p-3 mx-4" id="containerprincipal">
-        <h1 class="text-center text-dark mt-2 mx-5 font-weight-bolder " > Indique orden de mantenimiento a notificar </h1>
-        <h3 class="text-left text-dark mt-2">Transacción de notificación: </h3>
-        <div class="col-md-1 text-center" style="background-color: azure; border-width: 3px;"> IW41</div>
+    
+      
+   
+    <section class="d-flex justify-content-center col-md-4 ">
+
+    <div class="container mt-4 col-sm-12 px-0" >
+      <div class="d-flex justify-content-center mb-2">
+        <img src="{{ url_for('static', filename = 'img/CRP.png') }}" alt="" id="img">
+      </div>
+      <hr>
+        <h4 class="text-center text-dark mt-2  font-weight-bolder " > Indique orden de mantenimiento a notificar </h1>
+        <hr>
+          <h4 class="text-center text-dark mt-2">Transacción de notificación: </h4>
+
+        <div class=" text-center" style="background-color: azure; border-width: 3px;"> IW41</div>
         <form action="" method="post" id="form" >
           {% from "base/macro.html" import render_field %} 
           <div class="form-group mb-4">

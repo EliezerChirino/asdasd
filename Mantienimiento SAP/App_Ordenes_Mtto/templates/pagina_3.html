@@ -11,13 +11,15 @@
   }
 
 </style>
-  <header>
-    <section class="d-flex justify-content-center col-sm-12 col-xl-12 " >
-      <img src="{{ url_for('static', filename = 'img/CRP.png') }}" alt="" id="img">
-    </section>
-  </header>
-  <section class="d-flex justify-content-center mb-4">
-    <div class="container  mt-4  card col-sn-6 p-3 mx-4" id="containerprincipal"  >
+  
+    
+      
+  
+  <section class="d-flex justify-content-center mb-4 col-md-6">
+    <div class="container  mt-4  " id="containerprincipal"  >
+      <div class="d-flex justify-content-center mb-2">
+        <img src="{{ url_for('static', filename = 'img/CRP.png') }}" alt="" id="img">
+      </div>
       <form action="" method="post" id="form" >
       {% from "base/macro.html" import render_field %} 
       {{form.csrf_token}}
@@ -48,15 +50,15 @@
      <!--seleccion de notificación-->
      <div class="row">
      <div class="  btn btn-group-succes mb-2 " id="container" data-toggle="buttons" >
-      <label class="btn  text-ligth col-sm-6 col-xl-4 -checkbox-inline align-item-center " style="color: white;  background-color: rgb(204, 52, 47); border-width: 3px; border-color: rgb(192, 200, 204);"> Notificación Final
+      <label class="btn  text-ligth  -checkbox-inline align-item-center " style="color: white;  background-color: rgb(204, 52, 47); border-width: 3px; border-color: rgb(192, 200, 204);"> Notificación Final
         {{render_field(form.checkbox )}}
         
       </label>
-      <label class="btn col-sm-6 col-xl-4 -checkbox-inline " style="color: white; background-color: rgb(204, 52, 47); border-width: 3px; border-color: rgb(192, 200, 204);"> Comp. Reservas
+      <label class="btn  -checkbox-inline " style="color: white; background-color: rgb(204, 52, 47); border-width: 3px; border-color: rgb(192, 200, 204);"> Comp. Reservas
         {{render_field(form.checkbox )}}
         
       </label>
-      <label class="btn  col-sm-6 col-xl-4 -checkbox-inline align-item-center" style="color: white; background-color: rgb(204, 52, 47);border-width: 3px; border-color: rgb(192, 200, 204);"> Sin trabajo restante
+      <label class="btn   -checkbox-inline align-item-center" style="color: white; background-color: rgb(204, 52, 47);border-width: 3px; border-color: rgb(192, 200, 204);"> Sin trabajo restante
 
         {{render_field(form.checkbox )}}
         

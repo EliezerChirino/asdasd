@@ -17,7 +17,7 @@ from sqlite3 import Error
 
 
 
-datos_ordenesdb= r'C:\\Users\\echirino\\Documents\\Mantienimiento SAP\\App_Ordenes_Mtto\\base_de_datos_ordenes.db'
+datos_ordenesdb= r'C:\\Users\\Usuario\\Documents\\Nueva carpeta\\asdasd-main\\Mantienimiento SAP\\App_Ordenes_Mtto\\base_de_datos_ordenes.db'
 
 
 
@@ -67,24 +67,15 @@ def orden_mantenimiento():
     orden_form = forms.orden_mantenimiento(request.form)
     if request.method== "POST":
         orden=orden_form.orden.data.lower()
-        connect=sqlite3.connect(datos_ordenesdb)
-        cursor= connect.cursor()
-        sentencia= ("""INSERT INTO ordenes (texto) 
-                    values(?)""")
-        cursor.execute(sentencia, (orden))
-        connect.commit()
-        connect.close()
- 
+       
         return redirect(url_for('pagina_3'))
-    
-    
     return render_template("indexformulario.html",titulo=titulo, form=orden_form)
  
 
 @app.route("/pagina_3", methods = ["GET", "POST"])
 
-def form_datos_orden():
-    datos_form= forms.form_datos_orden(request.form)
+def pagina_3():
+    datos_form= forms.pagina_3(request.form)
     titulo= "pagina_3"
     if request.method == "POST": 
         ficha = datos_form.ficha()
