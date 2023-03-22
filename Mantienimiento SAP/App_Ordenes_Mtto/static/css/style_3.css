@@ -9,19 +9,17 @@
   }
 
   main{
-    padding: auto;
     padding: 10px;
-
+    width: 100%;
   }
 body{
-    width: 100%;
     position: relative ;
     padding-bottom: 3em;
     min-height: 93vh;
     background: #C9D6FF;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    padding: 10px;
+    
     
 }
 .container h1{
@@ -30,8 +28,8 @@ body{
 }
 section{
     width: 100%;
+    padding: 20px;
     background: transparent; 
-    padding: 30px;
     margin: auto;
     margin-top: 100px;
     border-radius: 4px;
@@ -41,16 +39,16 @@ section{
     
 }
 
-form .form-container{
+.form-container{
     margin-top: 2em;
     display: grid;
     gap: 2.5em;
-  
+    
  
 }
 
 .form-group{
-    background: transparent;
+    
     position: relative;
 }
 
@@ -64,24 +62,28 @@ form .form-container{
     border-bottom: 1px solid #000;
     
     
-    
 }
+
+select{
+   width: 100%;
+    background: none;
+    font-size: 18px;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+}
+
 
 input{
-    
-    outline: none;
+    background: transparent;
 }
-
-
 input:focus{
     outline: none;
     color: #000;
-    background: none;
 }
-label:focus{
-    outline: none;
-}
-label{
+
+.form_label{
     color: #080808;
     font-size: 16px;
     position: absolute;
@@ -91,15 +93,11 @@ label{
     transition: 0.5s ease-in-out all;
     pointer-events: none;
     background: none;
+    margin-top: 0;
 }
 
-input:focus~label,
-input:valid~label{
-    top: -14px;
-    font-size: 12px;
-    color:#1f53c5;
-    background: none;
-}
+
+
 
 
 
@@ -122,28 +120,6 @@ input:valid~label{
     margin-bottom: 2rem;
 }
 
-
-
-
- 
-#tiempostart{
-    display: inline-flex;
-    align-items: center;
-
-}
-#tiempoend{
-    display: inline-flex;
-    align-items: center;
-}
-
-
-
- 
-
-
-
-
-
 footer{
     padding: 1em 0;
     position: absolute;
@@ -155,3 +131,50 @@ footer{
     font-size: smaller;
     
      }
+     
+
+
+     
+@media (max-width: 760px){
+    .form_label{
+        color: #080808;
+        font-size: 16px;
+        position: absolute;
+        left: 5px;
+        bottom: 0;
+        top: -10px;
+        transition: 0.5s ease-in-out all;
+        pointer-events: none;
+        background: none;
+        margin-top: 0;
+    }
+
+
+    .form_input{
+        width: 300px;
+        background: none;
+        font-size: 18px;
+        padding: .6em .3em;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #000;
+        
+        
+    }
+
+    select{
+        width: 300px;
+         background: none;
+         font-size: 18px;
+         padding: .6em .3em;
+         border: none;
+         outline: none;
+         border-bottom: 1px solid #000;
+     }
+
+     .check-container{
+        width: 100%;
+     }
+  
+
+}

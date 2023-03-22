@@ -24,14 +24,17 @@ def length_honeypot(form, field):
         raise validators.ValidationError('El campo no debe estar vacio.')
 
 class login(Form):
-    usuario = StringField("", [validators.InputRequired(message="Nombre de usuario vacio!")])
+    username = StringField("", [validators.InputRequired(message="Nombre de usuario vacio!")])
     clave = PasswordField("", [validators.InputRequired(message="Ingrese la contraseña!"),
                                validators.Length(min=6,max=15,message="Se requiere contraseña")])
     honeypot = HiddenField('',[length_honeypot])
     
     
 class orden_mantenimiento(Form):
-    orden=StringField("", [validators.InputRequired(message="Rellene este campo por favor")])
+    orden=IntegerField("", [validators.InputRequired(message="Rellene este campo por favor")])
+    status=StringField("", [validators.InputRequired(message="Rellene este campo por favor")])
+    descripcion_orden=StringField("", [validators.InputRequired(message="Rellene este campo por favor")])
+    
     
 class pagina_3(Form):
      

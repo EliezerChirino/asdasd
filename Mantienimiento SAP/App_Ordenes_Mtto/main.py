@@ -16,8 +16,8 @@ from sqlite3 import Error
 
 
 
+ordenes_MttoBD= r'C:\\Users\\echirino\\Documents\\Proyecto N°1 ordnes mtto\\Mantienimiento SAP\\App_Ordenes_Mtto\\static\\db\\ordenes_Mtto.db'
 
-datos_ordenesdb= r'C:\\Users\\Usuario\\Documents\\Nueva carpeta\\asdasd-main\\Mantienimiento SAP\\App_Ordenes_Mtto\\base_de_datos_ordenes.db'
 
 
 
@@ -32,27 +32,30 @@ def login():
     titulo = "Inicio_de_sesion"
     login_form = forms.login(request.form)
     
-   
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     
     if request.method == "POST" and login_form.validate():
         
-        usuario = login_form.usuario.data.lower()
+        username = login_form.username.data.lower()
         clave = login_form.clave.data
-        connect=sqlite3.connect(datos_ordenesdb)
+        connect=sqlite3.connect(ordenes_MttoBD)
         cursor= connect.cursor()
-        sentencia= (""" SELECT usuario, contraseña from usuarios where usuario = ?"""  
+        
+        sentencia= (""" SELECT username, password from usuarios where username = ?"""  
         )
-        tabla=cursor.execute(sentencia, (usuario,))
+        
+        tabla=cursor.execute(sentencia, (username,))
         tabla=tabla.fetchone()
         connect.commit()
         connect.close()
         try:
-            contraseña= tabla[1]
-            user= tabla[0]
+            password= tabla[1]
+            username= tabla[0]
         except:
-            contraseña=None
-        if clave == contraseña and user is not None:
-            session['user']=usuario
+            password=None
+        if clave == password and username is not None:
+            session['user']=username
             return  redirect(url_for ('orden_mantenimiento'))
             
         else:
@@ -61,12 +64,27 @@ def login():
        
     return render_template("index.html", titulo=titulo,form = login_form)
 
+
+@app.route("/registrar", methods= ["GET", "POST"])
+def registra():
+    titulo= "registrar"
+    
+    render_template("registrar.html", titulo=titulo)
+
+
+
+
+
+
+
+
+
 @app.route("/orden", methods = ["GET", "POST"])
 def orden_mantenimiento():
     titulo = "orden_mantenimiento"
     orden_form = forms.orden_mantenimiento(request.form)
     if request.method== "POST":
-        orden=orden_form.orden.data.lower()
+        orden=orden_form.orden.data
        
         return redirect(url_for('pagina_3'))
     return render_template("indexformulario.html",titulo=titulo, form=orden_form)

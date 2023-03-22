@@ -1,22 +1,12 @@
 {% extends "base/base.html" %}
 {% block titulo %}
 <title>{{titulo}}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style_3.css') }}">
 {% endblock %}
 {% block body %}
-<style>
-  select{
-    border-width: 5px;
-    height: 2.5rem;
-    border-color: rgb(232, 235, 238);
-  }
-
-</style>
-  
-    
-      
-  
-  <section class="d-flex justify-content-center mb-4 col-md-6">
-    <div class="container  mt-4  " id="containerprincipal"  >
+  <main >
+  <section class="d-flex justify-content-center mb-4 col-md-6 col-sm-12  ">
+    <div class="container  mt-4  "   >
       <div class="d-flex justify-content-center mb-2">
         <img src="{{ url_for('static', filename = 'img/CRP.png') }}" alt="" id="img">
       </div>
@@ -24,69 +14,86 @@
       {% from "base/macro.html" import render_field %} 
       {{form.csrf_token}}
       {{form.opts}}
+      
+      <div class="form-container ">
     <!--Puesto de trabajo-->
-      <div class="container mt-3 mb-2">
-  <h4>Indique el puesto de trabajo</h4>
-    <select name="cars" id= "puestos_d_trabajo" class="custom-select mb-3 w-100 rounded barra"  >
-      <option selected>Puesto de trabajo</option>
-      <option value="1"> Electricista</option>
-      <option value="2">Mecánico</option>
-      <option value="3">Supervisor</option>
-      <option value="4">Servicios Generales</option>
-    </select>
+      
+      <h4>Indique el puesto de trabajo</h4>
+        <select name="cars" id= "puestos_d_trabajo" >
+          <option selected>Puesto de trabajo</option>
+          <option value="1"> Electricista</option>
+          <option value="2">Mecánico</option>
+          <option value="3">Supervisor</option>
+          <option value="4">Servicios Generales</option>
+        </select>
+        <label for="puestos_d_trabajo" class="form_label"></label>
     
     
-    <!-- Ficha del tecnico-->
-    <div class="form-group mb-3">
-            <label for="ficha" class="text-ibody" required> <h4 class="mb-0"> Ficha del técnico </h4></label>
-            {{ render_field(form.ficha, class ="form-control form-group", placeholder="Ficha del técnico") }}
-   </div>
-    <!--Tiempo de ejecución-->
-    
-    <div class="form-group mb-3">
-    <label for="tiempo" class="text-ibody" required> <h4 class="mb-0"> Tiempo real </h4></label>
-    {{ render_field(form.ficha, class ="form-control form-group", placeholder="Indique el tiempo real de ejecución del trabajo") }}
-    </div>
-     <!--seleccion de notificación-->
-     <div class="row">
-     <div class="  btn btn-group-succes mb-2 " id="container" data-toggle="buttons" >
-      <label class="btn  text-ligth  -checkbox-inline align-item-center " style="color: white;  background-color: rgb(204, 52, 47); border-width: 3px; border-color: rgb(192, 200, 204);"> Notificación Final
-        {{render_field(form.checkbox )}}
-        
-      </label>
-      <label class="btn  -checkbox-inline " style="color: white; background-color: rgb(204, 52, 47); border-width: 3px; border-color: rgb(192, 200, 204);"> Comp. Reservas
-        {{render_field(form.checkbox )}}
-        
-      </label>
-      <label class="btn   -checkbox-inline align-item-center" style="color: white; background-color: rgb(204, 52, 47);border-width: 3px; border-color: rgb(192, 200, 204);"> Sin trabajo restante
+            <!-- Ficha del tecnico-->
+          <div class="form-group ">
+                    {{ render_field(form.ficha, class ="form_input ", placeholder="", id="ficha") }}
+                    <label for="ficha" class="form_label " required>  Ficha del técnico </label>
+          </div>
 
-        {{render_field(form.checkbox )}}
-        
-      </label>
 
+<!---------------------------------------------Tiempo de ejecución---------------------------------------------------------------------------------------------------->
+    
+          <div class="form-group ">
+            {{ render_field(form.ficha, class ="form_input", placeholder="", id="tiempo") }}
+            <label for="tiempo" class=" form_label" required>  Tiempo real </label>
+          </div>
+
+
+<!---------------------------------------------Checkbox---------------------------------------------------------------------------------->
+          
+        <h4 class="mb-0">Tipo de notificación</h4>
+        <div class="  check-container  w-100 ">
+         
+        <div class="form-check   mx-5 form-check-inline  ">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Notificación Final">
+          <label class="form-check-label " for="inlineCheckbox1">Notificación Final</label>
+        </div>
+        
+        <div class="form-check text-center mx-5  form-check-inline  ">
+          <input class="form-check-input " type="checkbox" id="inlineCheckbox2" value="Sin trabajo rest">
+          <label class="form-check-label " for="inlineCheckbox2">Sin trabajo rest</label>
+        </div>
+        <div class="form-check  form-check-inline mx-5  ">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="trabajo rest" >
+          <label class="form-check-label" for="inlineCheckbox3">trabajo rest</label>
+        </div>
+        </div>
+     
+
+<!----------------------------------------------------tiempo inicio y final--------------------------------------------------------------->
+
+<h4 class="mb-2">Fecha y hora  del trabajo</h4>
+    <div class="tiempo_container  ">
+    <div class="form-group d-flex justify-content-center align-item-center mb-2 text-center" >
+      <label for="tiempostart" class="  text-center m-2"  >Iniciado </label>
+        {{ render_field(form.time_start, class="form-group ", id=tiempostart )}}
+      </div>
+      <div class=" tiempo form-group d-flex justify-content-center align-item-center mb-2 text-center " style="margin-left: -20px;">
+        <label for="tiempostart" class=" text-center m-2"   >Terminado </label>
+          {{ render_field(form.time_start, class="form-group ", id=tiempoend )}}
+        </div>
+      
      </div>
-    </div>
-      <!--Fecha de inicio y hora de inicio, fecha y hora de finalización-->
-      <h4 class="mb-2">Fecha y hora  del trabajo</h4>
-     <div class="row form-group btn-group-succes d-flex justify-content-center mx-1 px-2">
-      <label for="tiempostart" class="btn col-sm-4 col-xl-6 px-2 mx-2 d-flex justify-content-center align-item-center" style="color: white; width: 417px; background-color: rgb(204, 52, 47); border-width: 3px; border-color: rgb(192, 200, 204);" >Iniciado   
-        {{ render_field(form.time_start, class="form-group ml-4 ml-2 mr-0 my-2", id=tiempostart )}}
-      </label>
-      <label for="tiempend" class="btn col-sm-4 col-xl-4 d-flex justify-content-center align-item-center "  style="color: white; width: 417px; background-color:  rgb(204, 52, 47); border-width: 3px; border-color: rgb(192, 200, 204);" >terminado  
-        {{ render_field(form.time_end, class="form-group ml-2 mr-0 my-2", id=tiempoend )}}
-      </label>
-     </div>
+    
+        </div>
         <!-- textarea-->
         <div class=" form-group mb-2 mt-3 ">
           <label for="comentario" class="text-ibody " required> <h4> Texto explicativo del proceso de ejecución del trabajo</h4></label>
           {{render_field(form.texto, class="form-control", id="comentario", rows="5", style="border-width: 3px;")}}
-      
+        </div>
       <div class="d-flex justify-content-center mt-2">
-      <button  type="submit" class="btn btn-primary " > Enviar </button>
+      <button  type="submit" class="btn btn-primary botons" > Enviar </button>
       </div>
+    </div>
   </form>
 </div>
 </section>
+</main>
 
 <footer>
   <div >

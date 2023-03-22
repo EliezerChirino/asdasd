@@ -1,36 +1,54 @@
 {% extends "base/base.html" %}
 {% block titulo %}
 <title>{{titulo}}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style_2.css') }}">
 {% endblock %}
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/stilos.css') }}">
+
 {% block body %}
   <header>
     
       
    
-    <section class="d-flex justify-content-center col-md-4 ">
+    <section class="d-flex justify-content-center col-md-6  col-sm-12 mb-5 ">
 
     <div class="container mt-4 col-sm-12 px-0" >
       <div class="d-flex justify-content-center mb-2">
         <img src="{{ url_for('static', filename = 'img/CRP.png') }}" alt="" id="img">
       </div>
-      <hr>
+      
         <h4 class="text-center text-dark mt-2  font-weight-bolder " > Indique orden de mantenimiento a notificar </h1>
         <hr>
           <h4 class="text-center text-dark mt-2">Transacción de notificación: </h4>
 
-        <div class=" text-center" style="background-color: azure; border-width: 3px;"> IW41</div>
+        <div class=" text-center w-25 mb-3" style="background-color: azure; border-width: 3px;"> IW41</div>
         <form action="" method="post" id="form" >
-          {% from "base/macro.html" import render_field %} 
+          {% from "base/macro.html" import render_field %}
+          <div class="form-container">
+
+
           <div class="form-group mb-4">
-            {{ render_field (form.orden, class ="form-control",placeholder="Ingrese" ) }}
+            {{ render_field (form.orden, class =" form_input",placeholder="", id="orden" ) }}
+            <label for="orden" class="form_label">Ingrese la orden</label>
+          </div>
+          
+          <div class="form-group mb-4">
+            {{ render_field (form.status, class =" form_input",placeholder="", id="status" ) }}
+            <label for="status" class="form_label">Indique el Status</label>
           </div>
 
-          <div>
+          <div class="form-group mb-4">
+            {{ render_field (form.descripcion_orden, class =" form_input",placeholder="", id="descripcion_orden" ) }}
+            <label for="descripcion_orden" class="form_label">Breve descripción de la orden</label>
+          </div>
+
+
+
+          <div >
             {{ form.honeypot }}
             <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-            <button type="submit" class="btn btn-primary mt-3 mb-3 col-sm-12 col-xl-12" id="boton"> Siguiente</button>
+            <button type="submit" class="btn btn-primary mt-3 mb-3 botons  " id="boton"> Siguiente</button>
           </div>
+        </div> 
         </form>
         
       </div>
